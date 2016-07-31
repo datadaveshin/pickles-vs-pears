@@ -83,7 +83,7 @@ var makePiece = function(gameBoard, initialPosition, player) {
     var gamePiece = {
         name: pieceName,
         // typeOfPiece: pieceType,
-        imageURL: '',
+        imageURL: imageDict[player],
         playerBelongsTo: player
     };
     var row = initialPosition[0];
@@ -216,7 +216,6 @@ var placeRandom = function(board, player) {
     // console.log('randomPos', randomEmptyPos)
     // console.log('player', player)
     makePiece(board, randomEmptyPos, player);
-    board[randomEmptyPos[0]][randomEmptyPos[1]].gamePiece.imageURL = imageDict[gameBoard[randomEmptyPos[0]][randomEmptyPos[1]].gamePiece.playerBelongsTo]
 };
 
 // Takes currentPlayer as input, returns other player
@@ -238,7 +237,6 @@ var cloneBoard = function (board) {
             // Make duplicate pieces in cloned board if they exist in original board
             if (squareObj.gamePiece) {
                 makePiece(clone, squareObj.position, squareObj.gamePiece.playerBelongsTo);
-                clone[squareObj.position[0]][squareObj.position[1]].gamePiece.imageURL = imageDict[squareObj.gamePiece.playerBelongsTo];
             }
         });
     });

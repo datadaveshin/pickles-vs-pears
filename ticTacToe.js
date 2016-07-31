@@ -83,7 +83,6 @@ var resetGame = function() {
             if (!gameBoard[row][col].gamePiece) {
                 // Make a gamePiece and render the Board
                 makePiece(gameBoard, [row, col], currentPlayer);
-                gameBoard[row][col].gamePiece.imageURL = imageDict[gameBoard[row][col].gamePiece.playerBelongsTo]
                 renderGameBoard(gameBoard);
                 
                 // Check if 1st human player wins or tie
