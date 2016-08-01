@@ -1,5 +1,5 @@
 console.log("helperFunction is Accessed")
-
+// Test
 // Uncomment 3 lines below to invoke the clickHandler function in ticTacToe.js
 $(document).on('click', '.gameSquare', function() {
   clickHandler($(this).data('position'));
