@@ -259,13 +259,14 @@ var cloneBoard = function (board) {
 // }
 
 // Monte Carlo Simultor
-var monteCarlo = function(board, currPlayer, numTrials) {
+var monteCarlo = function(board, compPlayer, numTrials) {
     var simulationBoard = cloneBoard(board)
-    var player = switchPlayer(currPlayer)
+    // var compPlayer = switchPlayer(currPlayer)
     for (var i = 0; i < numTrials; i++) 
-        
-        checkWin(simulationBoard)
-
+        var trial = autoPlay(simulationBoard, currPlayer);
+        // var outcome = checkWin(simulationBoard);
+        scoreBoard(simulationBoard);
+        currPlayer = switchPlayer(currPlayer);
     }
 
 
