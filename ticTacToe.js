@@ -75,6 +75,7 @@ var resetGame = function() {
     window.clickHandler = function(positionArr) {
         if (gameOn) {
             console.log(gameBoard) // test
+
             // Get board position of clicked square
             var row = positionArr[0];
             var col = positionArr[1];
@@ -117,7 +118,8 @@ var resetGame = function() {
                 } else if (numPlayers === 2) {
                         currentPlayer = switchPlayer(currentPlayer);
                 }
-                console.log("winner2:", winner)
+                console.log("winner2:", winner) // test
+                printBoard(gameBoard, 'player') // test
             }
         }
     };
