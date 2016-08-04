@@ -58,7 +58,7 @@ var renderGameBoard = function(gameBoard) {
     gameBoard.forEach(function(rowArr, rowIndex) {
         rowArr.forEach(function(squareObj, columnIndex) {
             // Create the HTML that will be rendered to the DOM for each square 
-            if(squareObj.gamePiece && squareObj.gamePiece.imageURL) {
+            if (squareObj.gamePiece && squareObj.gamePiece.imageURL) {
                 var squareHtml = '<img src="' + squareObj.gamePiece.imageURL + '" class="gameSquare" style="height:' + squareSize + 'px; width:' + squareSize + 'px" data-position="[' + rowIndex + ',' + columnIndex + ']">'
             } else {
                 var squareText = '';
@@ -248,27 +248,62 @@ var cloneBoard = function (board) {
 //     return board  
 // };
 
-// Auto player
-// var autoPlay = function(board, currPlayer) {
-//     var gameRunning = true
-//     while (gameRunning) {
-//         placeRandom(board, currPlayer)
-//         checkWin
+// Print Board - for Testing players or scores
+var printBoard = function(board, outputType) {
+    if (outputType === "player") {
+        console.log("\n#######Players################")
+    } else {
+        console.log("\n#####Score#####")
+    }
+    var playerArr = _.each(board, function(boardRow, index) {
+        var row = "row " + index + ": "
+        var output
+        _.each (boardRow, function(squareObj){
+            if (squareObj.gamePiece === "" && outputType ==="player") {
+                output = "_______"
+            } else if (squareObj.gamePiece === "" && outputType ==="score") {
+                output = "____"
+            } else if (outputType === "player") {
+                output = squareObj.gamePiece.playerBelongsTo;
+            } else if (outputType === "score") {
+                output = squareObj.gamePiece.score;
+            }
+            row += output + " ";
+        });
+        console.log(row);
+        
+    });
+    if (outputType === "player") {
+        console.log("##############################\n")
+    } else {
+        console.log("\n###############")
+    }
+}
 
-//     }
-// }
+// Auto player
+var autoPlay = function(board, compPlayer) {
+    var autoPlayBoard = clone(board);
+    var currPlayer = compPlayer;
+    var autoPlayWinner = 'noWinner';
+    while (autoPlayWinner) {
+        placeRandom(board, currPlayer);
+        autoPlayWinner = checkWin(autoPlayWinner);
+        currPlayer = switchPlayer(currPlayer);
+    }
+    return {"autoPlayBoard": autoPlayBoard, "autoPlayWinner": autoPlayWinner} 
+}
 
 // Monte Carlo Simultor
 var monteCarlo = function(board, compPlayer, numTrials) {
     var simulationBoard = cloneBoard(board)
     // var compPlayer = switchPlayer(currPlayer)
-    for (var i = 0; i < numTrials; i++) 
-        var trial = autoPlay(simulationBoard, currPlayer);
+    for (var i = 0; i < numTrials; i++) {
+        var autoBoard = autoPlay(board, compPlayer);
         // var outcome = checkWin(simulationBoard);
         scoreBoard(simulationBoard);
         currPlayer = switchPlayer(currPlayer);
     }
-
+}
 
 // Alerts the winner or if a tie
 var winAlert = function(gameState) {
@@ -278,3 +313,6 @@ var winAlert = function(gameState) {
         alert(nameDict[gameState] + " win!!!");
     }
 };
+
+// Put tests here!
+
