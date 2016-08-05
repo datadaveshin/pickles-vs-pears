@@ -89,9 +89,9 @@ var resetGame = function() {
                 // Check if 1st human player wins or tie
                 // if so, alert and reset game
                 winner = checkWin(gameBoard);
-                console.log("winner1:", winner)
+                // console.log("winner1:", winner)
                 if (winner === currentPlayer || winner ==='tie') {
-                    console.log("winalert 1")
+                    console.log("winalert 1") // test
                     winAlert(winner);
                     gameOn = false;
                 }
@@ -103,12 +103,13 @@ var resetGame = function() {
                 // Render game board
                 if (numPlayers === 1) {
                     if (getEmptySquares(gameBoard).length > 0 && gameOn) {
-                        placeRandom(gameBoard, computerPlayer);
+                        // placeRandom(gameBoard, computerPlayer);
+                        autoPlay(gameBoard, computerPlayer);
                     };
-                    renderGameBoard(gameBoard);
+                    renderGameBoard(gameBoard); // test - toggle to test autoplay
                     winner = checkWin(gameBoard);
                     if (winner === computerPlayer || winner ==='tie') {
-                        console.log("winalert 2")
+                        // console.log("winalert 2") // test
                         winAlert(winner);
                         gameOn = false;
                     }
@@ -118,8 +119,8 @@ var resetGame = function() {
                 } else if (numPlayers === 2) {
                         currentPlayer = switchPlayer(currentPlayer);
                 }
-                console.log("winner2:", winner) // test
-                printBoard(gameBoard, 'player') // test
+                // console.log("winner2:", winner) // test
+                // printBoard(gameBoard, 'player') // test
             }
         }
     };

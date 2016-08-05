@@ -282,15 +282,17 @@ var printBoard = function(board, outputType) {
 
 // Auto player
 var autoPlay = function(board, compPlayer) {
-    var autoPlayBoard = clone(board);
+    var autoPlayBoard = cloneBoard(board);
     var currPlayer = compPlayer;
     var autoPlayWinner = 'noWinner';
-    while (autoPlayWinner) {
-        placeRandom(board, currPlayer);
-        autoPlayWinner = checkWin(autoPlayWinner);
+    while (autoPlayWinner === 'noWinner') {
+        placeRandom(autoPlayBoard, currPlayer);
+        autoPlayWinner = checkWin(autoPlayBoard);
         currPlayer = switchPlayer(currPlayer);
+        printBoard(autoPlayBoard, 'player')
     }
-    return {"autoPlayBoard": autoPlayBoard, "autoPlayWinner": autoPlayWinner} 
+    renderGameBoard(autoPlayBoard) // test
+    return {"autoPlayBoard": autoPlayBoard, "autoPlayWinner": autoPlayWinner}
 }
 
 // Monte Carlo Simultor
