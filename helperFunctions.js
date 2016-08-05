@@ -251,9 +251,9 @@ var cloneBoard = function (board) {
 // Print Board - for Testing players or scores
 var printBoard = function(board, outputType) {
     if (outputType === "player") {
-        console.log("\n#######Players################")
+        console.log("\n####### Players ################")
     } else {
-        console.log("\n#####Score#####")
+        console.log("\n###### Score #####")
     }
     var playerArr = _.each(board, function(boardRow, index) {
         var row = "row " + index + ": "
@@ -262,11 +262,11 @@ var printBoard = function(board, outputType) {
             if (squareObj.gamePiece === "" && outputType ==="player") {
                 output = "_______"
             } else if (squareObj.gamePiece === "" && outputType ==="score") {
-                output = "____"
+                output = "___"
             } else if (outputType === "player") {
                 output = squareObj.gamePiece.playerBelongsTo;
             } else if (outputType === "score") {
-                output = squareObj.gamePiece.score;
+                output = squareObj.score;
             }
             row += output + " ";
         });
@@ -274,9 +274,9 @@ var printBoard = function(board, outputType) {
         
     });
     if (outputType === "player") {
-        console.log("##############################\n")
+        console.log("################################\n")
     } else {
-        console.log("\n###############")
+        console.log("\n##################")
     }
 }
 
