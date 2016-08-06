@@ -14,8 +14,8 @@ var imageDict = {
     // playerO: "images/animal/cartoon-1299393_1280.png"
     // playerX: "images/fish/fish-1450768_1280.png",
     // playerO: "images/fish/lantern-fish-1433046_1280.png"
-    playerX: "images/fruitsAndVeggies/pear.png",
-    playerO: "images/fruitsAndVeggies/pickle.png"
+    playerX: "images/fruitsAndVeggies/pear-small.png",
+    playerO: "images/fruitsAndVeggies/pickle-small.png"
 };
 
 var nameDict  = {
