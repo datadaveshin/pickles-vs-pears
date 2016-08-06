@@ -6,7 +6,7 @@ var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
 var winner = 'noWinner';
-var numberOfTrials = 100;
+var numberOfTrials = 500;
 var scoreCurr = 1;
 var scoreOther = 1;
 
