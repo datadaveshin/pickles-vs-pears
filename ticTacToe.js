@@ -5,7 +5,10 @@ var gridSize = 3;
 var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
-var winner = 'noWinner'
+var winner = 'noWinner';
+var numberOfTrials = 100;
+var scoreCurr = 1;
+var scoreOther = 1;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
@@ -74,7 +77,7 @@ var resetGame = function() {
     // Checks to see if there is a win
     window.clickHandler = function(positionArr) {
         if (gameOn) {
-            console.log(gameBoard) // test
+            // console.log(gameBoard) // test
 
             // Get board position of clicked square
             var row = positionArr[0];
@@ -91,7 +94,7 @@ var resetGame = function() {
                 winner = checkWin(gameBoard);
                 // console.log("winner1:", winner)
                 if (winner === currentPlayer || winner ==='tie') {
-                    console.log("winalert 1") // test
+                    // console.log("winalert 1") // test
                     winAlert(winner);
                     gameOn = false;
                 }
@@ -104,7 +107,8 @@ var resetGame = function() {
                 if (numPlayers === 1) {
                     if (getEmptySquares(gameBoard).length > 0 && gameOn) {
                         // placeRandom(gameBoard, computerPlayer);
-                        autoPlay(gameBoard, computerPlayer);
+                        // autoPlay(gameBoard, computerPlayer); // test - toglle to test autoPlay
+                        monteCarlo(gameBoard, computerPlayer, numberOfTrials)
                     };
                     renderGameBoard(gameBoard); // test - toggle to test autoplay
                     winner = checkWin(gameBoard);

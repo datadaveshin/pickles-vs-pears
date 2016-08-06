@@ -1,4 +1,4 @@
-console.log("helperFunction is Accessed")
+// console.log("helperFunction is Accessed")  // test
 
 // Uncomment 3 lines below to invoke the clickHandler function in ticTacToe.js
 $(document).on('click', '.gameSquare', function() {
@@ -25,7 +25,7 @@ var nameDict  = {
 
 // Generates the gameBoard
 var makeGameBoard = function(boardSize) {
-    console.log("makeGameBoard Getting Accessed")
+    // console.log("makeGameBoard Getting Accessed") // test
     var board = [];
     var color = getRandomColor();
     for(var i = 0; i < boardSize; i++) {
@@ -72,9 +72,6 @@ var renderGameBoard = function(gameBoard) {
     });
 };
 
-(function() {
-    console.log("I love it this much!")
-})();
 
 // Generates a gamePiece object 
 // initialPosition is a 2 element array
@@ -213,8 +210,8 @@ var placeRandom = function(board, player) {
     var emptyArr = getEmptySquares(board)
     var randomEmptyPos = emptyArr[_.random(emptyArr.length - 1)];
     // Test
-    // console.log('randomPos', randomEmptyPos)
-    // console.log('player', player)
+    // console.log('randomPos', randomEmptyPos) // test
+    // console.log('player', player) // test
     makePiece(board, randomEmptyPos, player);
 };
 
@@ -250,10 +247,11 @@ var cloneBoard = function (board) {
 
 // Print Board - for Testing players or scores
 var printBoard = function(board, outputType) {
+    // console.log("PASSED BOARD", board) // test
     if (outputType === "player") {
-        console.log("\n####### Players ################")
+        console.log("\n####### Players ################") 
     } else {
-        console.log("\n###### Score #####")
+        console.log("\n###### Score #####") 
     }
     var playerArr = _.each(board, function(boardRow, index) {
         var row = "row " + index + ": "
@@ -261,8 +259,8 @@ var printBoard = function(board, outputType) {
         _.each (boardRow, function(squareObj){
             if (squareObj.gamePiece === "" && outputType ==="player") {
                 output = "_______"
-            } else if (squareObj.gamePiece === "" && outputType ==="score") {
-                output = "___"
+            // } else if (squareObj.gamePiece === "" && outputType ==="score") {
+            //     output = "___"
             } else if (outputType === "player") {
                 output = squareObj.gamePiece.playerBelongsTo;
             } else if (outputType === "score") {
@@ -271,12 +269,45 @@ var printBoard = function(board, outputType) {
             row += output + " ";
         });
         console.log(row);
-        
     });
     if (outputType === "player") {
         console.log("################################\n")
     } else {
         console.log("\n##################")
+    }
+}
+
+// update Scores
+var updateScores = function(autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner) {
+    // console.log("autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner", autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner) // test
+    if (autoPlayWinner === "tie") {
+        return scoreBoard;
+    } else {
+        // var emptyArr = getEmptySquares(scoreBoard);
+        if (autoPlayWinner === compPlayer) {
+            var valueFlipper = 1;
+        } else {
+            var valueFlipper = -1;
+        }
+        // console.log("updateScores autoPlayBoard", autoPlayBoard) // test
+        _.each(autoPlayBoard, function(gameBoardRow) {
+            _.each(gameBoardRow, function(squareObj){
+                // console.log("squareObj.gamepiece", squareObj) // test
+                var boardRow = squareObj.position[0]
+                var boardCol = squareObj.position[1]
+                if (squareObj.gamePiece) {
+                    // console.log("squareObj.gamepiece.playerBelongsTo === compPlayer", squareObj.gamePiece.playerBelongsTo, compPlayer) // test
+                    if (squareObj.gamePiece.playerBelongsTo === compPlayer) {
+                        scoreBoard[boardRow][boardCol].score += valueFlipper * scoreCurr;
+                    } else {
+                        scoreBoard[boardRow][boardCol].score -= valueFlipper * scoreOther;
+                    }
+                }
+            })
+        })
+        // printBoard(scoreBoard, 'score') 
+        // console.log("HERE!!!!!!!!!!!!") test
+        return scoreBoard; 
     }
 }
 
@@ -289,22 +320,57 @@ var autoPlay = function(board, compPlayer) {
         placeRandom(autoPlayBoard, currPlayer);
         autoPlayWinner = checkWin(autoPlayBoard);
         currPlayer = switchPlayer(currPlayer);
-        printBoard(autoPlayBoard, 'player')
+        // printBoard(autoPlayBoard, 'player') // test
     }
-    renderGameBoard(autoPlayBoard) // test
-    return {"autoPlayBoard": autoPlayBoard, "autoPlayWinner": autoPlayWinner}
+    // renderGameBoard(autoPlayBoard) // test
+    return {"board": autoPlayBoard, "winner": autoPlayWinner}
+}
+
+var shuffleArray = function(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    return array;
+}
+
+// Get Best Move
+var getBestMove = function(board, scoreBoard, compPlayer) {
+    var emptyArr = getEmptySquares(board)
+    emptyArr = shuffleArray(emptyArr)
+    var max = -Infinity
+    var min = Infinity
+    var maxPos = false
+    // console.log("EMPTY ARRAY", emptyArr) // test
+    _.each(emptyArr, function(postionArray){
+        var emptyRow = postionArray[0];
+        var emptyCol = postionArray[1];
+        // console.log("scoreBoard[emptyRow][emptyCol].score", scoreBoard[emptyRow][emptyCol].score) // test
+        if (scoreBoard[emptyRow][emptyCol].score > max) {
+            max = scoreBoard[emptyRow][emptyCol].score
+            maxPos = postionArray
+        }
+        // console.log("maxPos", maxPos) // test    
+    })
+    return maxPos
 }
 
 // Monte Carlo Simultor
 var monteCarlo = function(board, compPlayer, numTrials) {
-    var simulationBoard = cloneBoard(board)
-    // var compPlayer = switchPlayer(currPlayer)
+    var scoreBoard = cloneBoard(board);
+    // console.log("scoreBoard!!!!", scoreBoard) // test
     for (var i = 0; i < numTrials; i++) {
-        var autoBoard = autoPlay(board, compPlayer);
-        // var outcome = checkWin(simulationBoard);
-        scoreBoard(simulationBoard);
-        currPlayer = switchPlayer(currPlayer);
+        var autoResults = autoPlay(board, compPlayer);
+        // console.log("scoreBoard BEFORE", scoreBoard) // test
+        scoreBoard = updateScores(autoResults.board, scoreBoard, compPlayer, autoResults.winner);
+        // console.log("scoreBoard AFTER", scoreBoard) // test
+        // printBoard(scoreBoard, 'score') test
     }
+    var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer)
+    // console.log("bestMovePosition", bestMovePosition) // test
+    makePiece(board, bestMovePosition, compPlayer);
 }
 
 // Alerts the winner or if a tie
