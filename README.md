@@ -1,4 +1,4 @@
-## Play version 2 here: [Tic Tac Toe Plus] (https://datadaveshin.github.io/webgames/)
+## Play version 3 here: [Tic Tac Toe Plus] (https://datadaveshin.github.io/webgames/)
 
 # Tic Tac Toe Plus
 For my nieces, I decided to make a Tic Tac Toe game. This is my first JavaScript/Web project, and it is derived from the Telegraph Prep Capstone Project.
