@@ -15,7 +15,7 @@ var resetGame = function() {
     gameOn = true;
     currentPlayer = humanPlayer;
     window.gameBoard = makeGameBoard(gridSize);
-    resetBoard(gameBoard);
+    // resetBoard(gameBoard);
     if (numPlayers === 1 && currentPlayer === 'playerX') {
         placeRandom(gameBoard, computerPlayer);
     }
@@ -82,12 +82,17 @@ var resetGame = function() {
             // Get board position of clicked square
             var row = positionArr[0];
             var col = positionArr[1];
+            var filledSquare = false;
+            var whileEmpty = true;
 
             // If there is not a gamePiece assigned to square, do:
-            if (!gameBoard[row][col].gamePiece) {
+            if (gameBoard[row][col].gamePiece === undefined) {
+                // console.log("In the player 1 loop") // test
+
                 // Make a gamePiece and render the Board
                 makePiece(gameBoard, [row, col], currentPlayer);
                 renderGameBoard(gameBoard);
+                whileEmpty = false;
                 
                 // Check if 1st human player wins or tie
                 // if so, alert and reset game
@@ -98,33 +103,35 @@ var resetGame = function() {
                     winAlert(winner);
                     gameOn = false;
                 }
-            }
-            if (gameOn) {
-                // If 1 player then:
-                // Check for empty squares and 
-                // Let computer choose at random
-                // Render game board
-                if (numPlayers === 1) {
-                    if (getEmptySquares(gameBoard).length > 0 && gameOn) {
-                        // placeRandom(gameBoard, computerPlayer);
-                        // autoPlay(gameBoard, computerPlayer); // test - toglle to test autoPlay
-                        monteCarlo(gameBoard, computerPlayer, numberOfTrials)
-                    };
-                    renderGameBoard(gameBoard); // test - toggle to test autoplay
-                    winner = checkWin(gameBoard);
-                    if (winner === computerPlayer || winner ==='tie') {
-                        // console.log("winalert 2") // test
-                        winAlert(winner);
-                        gameOn = false;
-                    }
 
-                // Else If 2 players then:
-                // Simply switch the current player for next loop
-                } else if (numPlayers === 2) {
-                        currentPlayer = switchPlayer(currentPlayer);
+                if (gameOn) {
+                    // If 1 player then:
+                    // Check for empty squares and 
+                    // Let computer choose at random
+                    // Render game board
+                    if (numPlayers === 1) {
+                        if (getEmptySquares(gameBoard).length > 0 && gameOn) {
+                            // placeRandom(gameBoard, computerPlayer);
+                            // autoPlay(gameBoard, computerPlayer); // test - toglle to test autoPlay
+                            monteCarlo(gameBoard, computerPlayer, numberOfTrials)
+                        };
+                        renderGameBoard(gameBoard); // test - toggle to test autoplay
+                        winner = checkWin(gameBoard);
+                        if (winner === computerPlayer || winner ==='tie') {
+                            // console.log("winalert 2") // test
+                            winAlert(winner);
+                            gameOn = false;
+                        }
+
+                    // Else If 2 players then:
+                    // Simply switch the current player for next loop
+                    } else if (numPlayers === 2) {
+                            currentPlayer = switchPlayer(currentPlayer);
+                    }
+                    // console.log("winner2:", winner) // test
+                    // printBoard(gameBoard, 'player') // test
+                    // console.log("gameBoard", gameBoard) // test
                 }
-                // console.log("winner2:", winner) // test
-                // printBoard(gameBoard, 'player') // test
             }
         }
     };

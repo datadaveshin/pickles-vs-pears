@@ -32,7 +32,7 @@ var makeGameBoard = function(boardSize) {
             var square = {
             position: [i, j],
             color: color,
-            gamePiece: '', // This property contains gamePiece object if one is on that square. 
+            gamePiece: undefined, // This property contains gamePiece object if one is on that square. 
             text: '',
             score: 0
             };
