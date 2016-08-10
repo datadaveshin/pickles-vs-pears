@@ -57,6 +57,12 @@ var resetGame = function() {
         resetGame();
     };
 
+    // Restart game with 5 X 5 grid, player mode is retained
+    document.getElementById('button-grid6').onclick = function() {
+        gridSize = 6;
+        resetGame();
+    };
+
     // Restart game with human player as pear
     document.getElementById('button-pear').onclick = function() {
         humanPlayer = 'playerX'
