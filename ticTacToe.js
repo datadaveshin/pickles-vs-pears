@@ -6,7 +6,7 @@ var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
 var winner = 'noWinner';
-var numberOfTrials = 500;
+var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
 
@@ -113,7 +113,7 @@ var resetGame = function() {
                         if (getEmptySquares(gameBoard).length > 0 && gameOn) {
                             // placeRandom(gameBoard, computerPlayer);
                             // autoPlay(gameBoard, computerPlayer); // test - toglle to test autoPlay
-                            monteCarlo(gameBoard, computerPlayer, numberOfTrials)
+                            monteCarlo(gameBoard, computerPlayer, numberOfTrials, "max")
                         };
                         renderGameBoard(gameBoard); // test - toggle to test autoplay
                         winner = checkWin(gameBoard);

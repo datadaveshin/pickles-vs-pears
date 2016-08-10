@@ -335,7 +335,7 @@ var shuffleArray = function(array) {
 }
 
 // Get Best Move
-var getBestMove = function(board, scoreBoard, compPlayer) {
+var getBestMove = function(board, scoreBoard, compPlayer, minOrMax) {
     var emptyArr = getEmptySquares(board)
     emptyArr = shuffleArray(emptyArr)
     var max = -Infinity
@@ -350,13 +350,22 @@ var getBestMove = function(board, scoreBoard, compPlayer) {
             max = scoreBoard[emptyRow][emptyCol].score
             maxPos = postionArray
         }
-        // console.log("maxPos", maxPos) // test    
+
+        // console.log("maxPos", maxPos) // test   
+        if (scoreBoard[emptyRow][emptyCol].score < min) {
+            min = scoreBoard[emptyRow][emptyCol].score
+            minPos = postionArray
+        } 
     })
-    return maxPos
+    if (minOrMax === "min") {
+        return minPos
+    } else {
+        return maxPos
+    }
 }
 
 // Monte Carlo Simultor
-var monteCarlo = function(board, compPlayer, numTrials) {
+var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
     var scoreBoard = cloneBoard(board);
     // console.log("scoreBoard!!!!", scoreBoard) // test
     for (var i = 0; i < numTrials; i++) {
@@ -366,7 +375,7 @@ var monteCarlo = function(board, compPlayer, numTrials) {
         // console.log("scoreBoard AFTER", scoreBoard) // test
         // printBoard(scoreBoard, 'score') test
     }
-    var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer)
+    var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer, minOrMax)
     // console.log("bestMovePosition", bestMovePosition) // test
     makePiece(board, bestMovePosition, compPlayer);
 }
