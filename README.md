@@ -2,7 +2,7 @@
 
 # Pickles vs. Pears
 For my nieces, I decided to make a modified Tic Tac Toe game. This is my first JavaScript/Web project, and it is derived from the Telegraph Prep Capstone Project.
-Telegraph Prep provided starter .css and .html files, along with methods to create an 8 x 8 game board, render the board, and a click handler that would return the position of the board that the mouse clicked. From there, I modified all of the methods to generate 3 x 3 to 5 x 5 grid boards, and the logic to change the click handler from returning a square position to having the ability to make a basic Tic Tac Toe game.
+Telegraph Prep provided starter .css and .html files, along with methods to create an 8 x 8 game board, render the board, and a click handler that would return the position of the board that the mouse clicked. From there, I modified all of the methods to generate 3 x 3 to 6 x 6 grid boards, and the logic to change the click handler from returning a square position to having the ability to make a basic Tic Tac Toe game.
 
 ## Version 3
 A Monte Carlo simulation and a scoring function was used to allow the computer player to make better moves. I chose Monte Carlo over a minimax algorithm because it should be easy to set "skill" levels by changing the number of trials.
