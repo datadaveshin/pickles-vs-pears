@@ -6,6 +6,7 @@ var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
 var winner = 'noWinner';
+var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
@@ -36,6 +37,33 @@ var resetGame = function() {
     // Restart game in 2 player mode
     document.getElementById('button-2player').onclick = function() {
         numPlayers = 2;
+        resetGame();
+    };
+
+    // Restart game in Can't Lose mode
+    document.getElementById('button-cantLose').onclick = function() {
+        computerLogic = 'min'
+        numberOfTrials = 1000;
+        resetGame();
+    };
+
+    // Restart game in Easy mode
+    document.getElementById('button-easy').onclick = function() {
+        computerLogic = 'random'
+        resetGame();
+    };
+
+    // Restart game in Medium mode
+    document.getElementById('button-medium').onclick = function() {
+        computerLogic = 'max'
+        numberOfTrials = 10;
+        resetGame();
+    };
+
+    // Restart game in Hard mode
+    document.getElementById('button-hard').onclick = function() {
+        computerLogic = 'max'
+        numberOfTrials = 1000;
         resetGame();
     };
 
@@ -117,9 +145,12 @@ var resetGame = function() {
                     // Render game board
                     if (numPlayers === 1) {
                         if (getEmptySquares(gameBoard).length > 0 && gameOn) {
-                            // placeRandom(gameBoard, computerPlayer);
+                            if (computerLogic === "random") {
+                                placeRandom(gameBoard, computerPlayer);
+                            } else {
                             // autoPlay(gameBoard, computerPlayer); // test - toglle to test autoPlay
-                            monteCarlo(gameBoard, computerPlayer, numberOfTrials, "max")
+                            monteCarlo(gameBoard, computerPlayer, numberOfTrials, computerLogic)
+                            }
                         };
                         renderGameBoard(gameBoard); // test - toggle to test autoplay
                         winner = checkWin(gameBoard);

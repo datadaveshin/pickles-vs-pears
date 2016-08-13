@@ -373,7 +373,7 @@ var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
         // console.log("scoreBoard BEFORE", scoreBoard) // test
         scoreBoard = updateScores(autoResults.board, scoreBoard, compPlayer, autoResults.winner);
         // console.log("scoreBoard AFTER", scoreBoard) // test
-        // printBoard(scoreBoard, 'score') test
+        // printBoard(scoreBoard, 'score') // test
     }
     var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer, minOrMax)
     // console.log("bestMovePosition", bestMovePosition) // test
