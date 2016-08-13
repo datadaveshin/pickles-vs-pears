@@ -5,6 +5,11 @@ body {
 container {
   text-align: center;
 }
+
+img {
+  max-width: 80%;
+}
+
 /*.button {
   display: inline-block;
 }*/
