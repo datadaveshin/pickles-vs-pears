@@ -10,14 +10,15 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
+var obstacles = false
 
 // Starts game over, used by other buttons
 var resetGame = function() {
     gameOn = true;
     currentPlayer = humanPlayer;
     window.gameBoard = makeGameBoard(gridSize);
-    // Add cow obstacles if on 'hard' mode and board size > 3
-    if (computerLogic === 'max' && numberOfTrials === 1000) {
+    // Add obstacles
+    if (obstacles) {
         addObstacle(gameBoard, "cow");
     }
     if (numPlayers === 1 && currentPlayer === 'playerX') {
@@ -106,6 +107,18 @@ var resetGame = function() {
     document.getElementById('button-pickle').onclick = function() {
         humanPlayer = 'playerO'
         computerPlayer = 'playerX'
+        resetGame();
+    };
+
+    // Restart game with no obstacles
+    document.getElementById('button-noObstacle').onclick = function() {
+        obstacles = false;
+        resetGame();
+    };
+
+    // Restart game with obstacles
+    document.getElementById('button-obstacle').onclick = function() {
+        obstacles = true;
         resetGame();
     };
 
