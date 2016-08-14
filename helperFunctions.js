@@ -13,12 +13,16 @@ var imageDict = {
     // playerX: "images/fish/fish-1450768_1280.png",
     // playerO: "images/fish/lantern-fish-1433046_1280.png"
     playerX: "images/fruitsAndVeggies/pear-small.png",
-    playerO: "images/fruitsAndVeggies/pickle-small.png"
+    playerO: "images/fruitsAndVeggies/pickle-small.png",
+    cow: "images/obstacles/cowFlower.jpg",
+    flower: "images/obstacles/flower.jpg"
+
 };
 
 var nameDict  = {
     playerX: "Pears",
-    playerO: "Pickles"
+    playerO: "Pickles",
+    cow: "Cow"
 };
 
 // Generates the gameBoard
@@ -373,7 +377,7 @@ var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
         // console.log("scoreBoard BEFORE", scoreBoard) // test
         scoreBoard = updateScores(autoResults.board, scoreBoard, compPlayer, autoResults.winner);
         // console.log("scoreBoard AFTER", scoreBoard) // test
-        // printBoard(scoreBoard, 'score') // test
+        printBoard(scoreBoard, 'score') // test
     }
     var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer, minOrMax)
     // console.log("bestMovePosition", bestMovePosition) // test

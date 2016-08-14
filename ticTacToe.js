@@ -10,18 +10,34 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
+var obstacles = 0;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
     gameOn = true;
     currentPlayer = humanPlayer;
     window.gameBoard = makeGameBoard(gridSize);
+    if (computerLogic === 'max' && numberOfTrials === 1000) {
+        if (getBoardDim(gameBoard) === 4) {
+            placeRandom(gameBoard, "cow");
+        } else if (getBoardDim(gameBoard) === 5) {
+            placeRandom(gameBoard, "cow");
+            placeRandom(gameBoard, "cow");
+        } else if (getBoardDim(gameBoard) === 6) {
+            placeRandom(gameBoard, "cow");
+            placeRandom(gameBoard, "cow");
+            placeRandom(gameBoard, "cow");
+            placeRandom(gameBoard, "cow");
+        }
+
+    }
     // resetBoard(gameBoard);
     if (numPlayers === 1 && currentPlayer === 'playerX') {
         placeRandom(gameBoard, computerPlayer);
     }
     renderGameBoard(gameBoard);
 };
+
 
 (function() {
     // Start an initial default game upon page loading
@@ -77,6 +93,7 @@ var resetGame = function() {
     document.getElementById('button-grid4').onclick = function() {
         gridSize = 4;
         resetGame();
+        renderGameBoard(gameBoard)
     };
      
     // Restart game with 5 X 5 grid, player mode is retained
@@ -104,6 +121,7 @@ var resetGame = function() {
         resetGame();
     };
 
+
     // Click handler for squares on board
     // Starts with the 1st human player move
     // Checks if there is a win
@@ -118,6 +136,9 @@ var resetGame = function() {
             var col = positionArr[1];
             var filledSquare = false;
             var whileEmpty = true;
+
+            // If game difficulty is hard and grid larger than 3x3
+            // add cows
 
             // If there is not a gamePiece assigned to square, do:
             if (gameBoard[row][col].gamePiece === undefined) {
