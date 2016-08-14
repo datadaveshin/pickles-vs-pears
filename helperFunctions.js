@@ -219,7 +219,7 @@ var placeRandom = function(board, player) {
 
 // Places boardLength - 3 obstacles randomly on gameBoard
 // obstacleType is cow, flower, etc.
-var placeObstacle = function(board, obstacleType) {
+var addObstacle = function(board, obstacleType) {
     var numObstacles = getBoardDim(board) - 3
     for (var i = 0; i < numObstacles; i++) {
         placeRandom(gameBoard, obstacleType);

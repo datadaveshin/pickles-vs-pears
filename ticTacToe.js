@@ -18,7 +18,7 @@ var resetGame = function() {
     window.gameBoard = makeGameBoard(gridSize);
     // Add cow obstacles if on 'hard' mode and board size > 3
     if (computerLogic === 'max' && numberOfTrials === 1000) {
-        placeObstacle(gameBoard, "cow");
+        addObstacle(gameBoard, "cow");
     }
     if (numPlayers === 1 && currentPlayer === 'playerX') {
         placeRandom(gameBoard, computerPlayer);
