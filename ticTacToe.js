@@ -10,28 +10,16 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = 0;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
     gameOn = true;
     currentPlayer = humanPlayer;
     window.gameBoard = makeGameBoard(gridSize);
+    // Add cow obstacles if on 'hard' mode and board size > 3
     if (computerLogic === 'max' && numberOfTrials === 1000) {
-        if (getBoardDim(gameBoard) === 4) {
-            placeRandom(gameBoard, "cow");
-        } else if (getBoardDim(gameBoard) === 5) {
-            placeRandom(gameBoard, "cow");
-            placeRandom(gameBoard, "cow");
-        } else if (getBoardDim(gameBoard) === 6) {
-            placeRandom(gameBoard, "cow");
-            placeRandom(gameBoard, "cow");
-            placeRandom(gameBoard, "cow");
-            placeRandom(gameBoard, "cow");
-        }
-
+        placeObstacle(gameBoard, "cow");
     }
-    // resetBoard(gameBoard);
     if (numPlayers === 1 && currentPlayer === 'playerX') {
         placeRandom(gameBoard, computerPlayer);
     }

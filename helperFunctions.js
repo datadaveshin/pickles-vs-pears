@@ -22,7 +22,8 @@ var imageDict = {
 var nameDict  = {
     playerX: "Pears",
     playerO: "Pickles",
-    cow: "Cow"
+    cow: "Cow",
+    flower: "Flower"
 };
 
 // Generates the gameBoard
@@ -136,7 +137,7 @@ var getEmptySquares = function(board) {
 // Checks status of game:
 // Takes a board
 // Returns string indicating winner is playerO, playerX or tie
-// If 
+// or noWinner
 var checkWin = function(board) {
     linesArr = [];
 
@@ -211,11 +212,19 @@ var checkWin = function(board) {
 var placeRandom = function(board, player) {
     var emptyArr = getEmptySquares(board)
     var randomEmptyPos = emptyArr[_.random(emptyArr.length - 1)];
-    // Test
     // console.log('randomPos', randomEmptyPos) // test
     // console.log('player', player) // test
     makePiece(board, randomEmptyPos, player);
 };
+
+// Places boardLength - 3 obstacles randomly on gameBoard
+// obstacleType is cow, flower, etc.
+var placeObstacle = function(board, obstacleType) {
+    var numObstacles = getBoardDim(board) - 3
+    for (var i = 0; i < numObstacles; i++) {
+        placeRandom(gameBoard, obstacleType);
+    }
+}
 
 // Takes currentPlayer as input, returns other player
 var switchPlayer = function(passedPlayer) {
@@ -242,10 +251,6 @@ var cloneBoard = function (board) {
     return clone;
 };
 
-// // Score Board
-// var scoreBoard = function (board, currPlayer) {
-//     return board  
-// };
 
 // Print Board - for Testing players or scores
 var printBoard = function(board, outputType) {
