@@ -10,7 +10,7 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = true
+var obstacles = false;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
@@ -32,7 +32,7 @@ var resetGame = function() {
     // Start an initial default game upon page loading
     window.gameBoard = makeGameBoard(3);
     placeRandom(gameBoard, computerPlayer);
-    addObstacle(gameBoard, "cow");
+    // addObstacle(gameBoard, "cow");  // Toggle to start default with obstacles
 
     // Restart game in 1 player mode
     document.getElementById('button-1player').onclick = function() {
