@@ -68,8 +68,9 @@ container {
     margin-bottom: 80px;
   }
   .button {
-    font-size: 36px;
+    font-size: 42px;
     margin: 6px 3px 6px 3px;
+    padding: 12px 20px;
   }
 }
 
