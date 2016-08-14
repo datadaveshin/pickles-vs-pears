@@ -78,9 +78,9 @@ container {
   img { max-width: 100%; 
   }
   .logo {
-    max-width: 90%;    
-    margin-top: 100px;
-    margin-bottom: 80px;
+    max-width: 95%;    
+    margin-top: 60px;
+    margin-bottom: 40px;
   }
   .button {
     font-size: 42px;
