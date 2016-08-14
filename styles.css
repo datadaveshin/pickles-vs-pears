@@ -79,12 +79,12 @@ container {
   }
   .logo {
     max-width: 100%;    
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
   .button {
     font-size: 56px;
-    margin: 6px 3px 6px 3px;
+    /*margin: 6px 3px 6px 3px;*/
   }  
 }
 
