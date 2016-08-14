@@ -32,6 +32,7 @@ var resetGame = function() {
     // Start an initial default game upon page loading
     window.gameBoard = makeGameBoard(3);
     placeRandom(gameBoard, computerPlayer);
+    addObstacle(gameBoard, "cow");
 
     // Restart game in 1 player mode
     document.getElementById('button-1player').onclick = function() {
