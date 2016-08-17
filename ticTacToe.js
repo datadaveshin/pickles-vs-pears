@@ -48,27 +48,27 @@ var resetGame = function() {
 
     // Restart game in Can't Lose mode
     document.getElementById('button-cantLose').onclick = function() {
-        computerLogic = 'min'
+        computerLogic = 'min';
         numberOfTrials = 1000;
         resetGame();
     };
 
     // Restart game in Easy mode
     document.getElementById('button-easy').onclick = function() {
-        computerLogic = 'random'
+        computerLogic = 'random';
         resetGame();
     };
 
     // Restart game in Medium mode
     document.getElementById('button-medium').onclick = function() {
-        computerLogic = 'max'
+        computerLogic = 'max';
         numberOfTrials = 8;
         resetGame();
     };
 
     // Restart game in Hard mode
     document.getElementById('button-hard').onclick = function() {
-        computerLogic = 'max'
+        computerLogic = 'max';
         numberOfTrials = 1000;
         resetGame();
     };
@@ -100,14 +100,14 @@ var resetGame = function() {
 
     // Restart game with human player as pear
     document.getElementById('button-pear').onclick = function() {
-        humanPlayer = 'playerX'
-        computerPlayer = 'playerO'
+        humanPlayer = 'playerX';
+        computerPlayer = 'playerO';
         resetGame();
     };
     // Restart game with human player as pickle
     document.getElementById('button-pickle').onclick = function() {
-        humanPlayer = 'playerO'
-        computerPlayer = 'playerX'
+        humanPlayer = 'playerO';
+        computerPlayer = 'playerX';
         resetGame();
     };
 
