@@ -62,7 +62,7 @@ var resetGame = function() {
     // Restart game in Medium mode
     document.getElementById('button-medium').onclick = function() {
         computerLogic = 'max'
-        numberOfTrials = 7;
+        numberOfTrials = 8;
         resetGame();
     };
 
