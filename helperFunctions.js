@@ -185,10 +185,16 @@ var checkWin = function(board) {
     }
 
     // Calculate if playerX or playerO is a winner and assign to outcome
+    // var outcome = fullLineArr.forEach(function(lineArr){return lineArr.gamePiece.playerBelongsTo === 'playerX' || 'flower' })
+    // var outcomeO = fullLineArr.filter(function(lineArr){return lineArr.gamePiece.playerBelongsTo === 'playerO' || 'flower' })
     var outcome;
     _.each(fullLineArr, function(lineArr) {
-        if (_.filter(lineArr, function(item) {return lineArr[0].gamePiece.playerBelongsTo === item.gamePiece.playerBelongsTo}).length === lineArr.length) {
-            outcome = lineArr[0].gamePiece.playerBelongsTo
+        if (_.filter(lineArr, function(item) {return item.gamePiece.playerBelongsTo === 'playerX' || 'flower'}).length === lineArr.length) {
+            outcome = 'playerX';
+            console.log("lineArrX", lineArr)
+        }
+        if (_.filter(lineArr, function(item) {return item.gamePiece.playerBelongsTo === 'playerO' || 'flower'}).length === lineArr.length) {
+            outcome = 'playerO';
         }
     })  
 
