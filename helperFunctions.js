@@ -185,11 +185,9 @@ var checkWin = function(board) {
     }
 
     // Calculate if playerX or playerO is a winner and assign to outcome
-    var outcome
+    var outcome;
     _.each(fullLineArr, function(lineArr) {
-        if (_.filter(lineArr, function(item) {
-                return lineArr[0].gamePiece.playerBelongsTo === item.gamePiece.playerBelongsTo
-            }).length === lineArr.length) {
+        if (_.filter(lineArr, function(item) {return lineArr[0].gamePiece.playerBelongsTo === item.gamePiece.playerBelongsTo}).length === lineArr.length) {
             outcome = lineArr[0].gamePiece.playerBelongsTo
         }
     })  
@@ -219,10 +217,10 @@ var placeRandom = function(board, player) {
 
 // Places boardLength - 3 obstacles randomly on gameBoard
 // obstacleType is cow, flower, etc.
-var addObstacle = function(board, obstacleType) {
-    var numObstacles = getBoardDim(board) - 2
-    for (var i = 0; i < numObstacles; i++) {
-        placeRandom(gameBoard, obstacleType);
+var addSpecialPiece = function(board, pieceType) {
+    var numPieces = getBoardDim(board) - 2
+    for (var i = 0; i < numPieces; i++) {
+        placeRandom(gameBoard, pieceType);
     }
 }
 
@@ -235,8 +233,8 @@ var switchPlayer = function(passedPlayer) {
     }
 };
 
-// Clone Board
-var cloneBoard = function (board) {
+// Clone Board - takes a board and returns a clone
+var cloneBoard = function(board) {
     var clone = makeGameBoard(getBoardDim(board));
     board.forEach(function(gameBoardRow) {
         gameBoardRow.forEach(function(squareObj) {
@@ -252,7 +250,7 @@ var cloneBoard = function (board) {
 };
 
 
-// Print Board - for Testing players or scores
+// Print Board - for Testing players or scores - gives a string representation of the board
 var printBoard = function(board, outputType) {
     // console.log("PASSED BOARD", board) // test
     if (outputType === "player") {
@@ -266,8 +264,6 @@ var printBoard = function(board, outputType) {
         _.each (boardRow, function(squareObj){
             if (squareObj.gamePiece === "" && outputType ==="player") {
                 output = "_______"
-            // } else if (squareObj.gamePiece === "" && outputType ==="score") {
-            //     output = "___"
             } else if (outputType === "player") {
                 output = squareObj.gamePiece.playerBelongsTo;
             } else if (outputType === "score") {
@@ -284,7 +280,7 @@ var printBoard = function(board, outputType) {
     }
 }
 
-// update Scores
+// update Scores - 
 var updateScores = function(autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner) {
     // console.log("autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner", autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner) // test
     if (autoPlayWinner === "tie") {
@@ -359,7 +355,6 @@ var getBestMove = function(board, scoreBoard, compPlayer, minOrMax) {
             max = scoreBoard[emptyRow][emptyCol].score
             maxPos = postionArray
         }
-
         // console.log("maxPos", maxPos) // test   
         if (scoreBoard[emptyRow][emptyCol].score < min) {
             min = scoreBoard[emptyRow][emptyCol].score
