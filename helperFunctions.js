@@ -188,15 +188,20 @@ var checkWin = function(board) {
     // var outcome = fullLineArr.forEach(function(lineArr){return lineArr.gamePiece.playerBelongsTo === 'playerX' || 'flower' })
     // var outcomeO = fullLineArr.filter(function(lineArr){return lineArr.gamePiece.playerBelongsTo === 'playerO' || 'flower' })
     var outcome;
-    _.each(fullLineArr, function(lineArr) {
-        if (_.filter(lineArr, function(item) {return item.gamePiece.playerBelongsTo === 'playerX' || 'flower'}).length === lineArr.length) {
-            outcome = 'playerX';
-            console.log("lineArrX", lineArr)
+
+    fullLineArr.forEach(function(line){
+        if (boardDim === line.filter(function(item){return item.gamePiece.playerBelongsTo !== 'cow'}).length){
+            // console.log(line.length, "hi") // Test
+            line = line.filter(function(item){return item.gamePiece.playerBelongsTo !== 'flower'})
+            // console.log("line", line) // Test
+            if (line.length === line.filter(function(item){return line[0].gamePiece.playerBelongsTo === item.gamePiece.playerBelongsTo}).length) {
+                outcome = line[0].gamePiece.playerBelongsTo;
+            }
+
+            // console.log("outcome", outcome) // Test
         }
-        if (_.filter(lineArr, function(item) {return item.gamePiece.playerBelongsTo === 'playerO' || 'flower'}).length === lineArr.length) {
-            outcome = 'playerO';
-        }
-    })  
+
+    });
 
     // If there was a winner return playerX or O
     // If there are no empty squares return a tie
