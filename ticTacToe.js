@@ -10,8 +10,8 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = true;
-var wilds = false;
+var obstacles = false;
+var wilds = true;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
@@ -96,7 +96,7 @@ var resetGame = function() {
         resetGame();
     };
 
-    // Restart game with 5 X 5 grid, player mode is retained
+    // Restart game with 6 X 6 grid, player mode is retained
     document.getElementById('button-grid6').onclick = function() {
         gridSize = 6;
         resetGame();
