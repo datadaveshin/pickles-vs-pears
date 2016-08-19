@@ -1,7 +1,7 @@
 // Initialize game environment
 var gameOn = true; // Set to true if game to start upon page loading
 var numPlayers = 1;
-var gridSize = 3;
+var gridSize = 4;
 var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
@@ -34,9 +34,9 @@ var resetGame = function() {
 
 (function() {
     // Start an initial default game upon page loading
-    window.gameBoard = makeGameBoard(3);
+    window.gameBoard = makeGameBoard(gridSize);
     placeRandom(gameBoard, computerPlayer);
-    addSpecialPiece(gameBoard, "cow");  // Toggle to start default with obstacles
+    addSpecialPiece(gameBoard, "flower");  // Toggle to start default with obstacles
 
     // Restart game in 1 player mode
     document.getElementById('button-1player').onclick = function() {
