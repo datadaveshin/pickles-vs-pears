@@ -11,7 +11,7 @@ var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
 var obstacles = false;
-var wilds = true;
+var wilds = false;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
@@ -36,7 +36,13 @@ var resetGame = function() {
     // Start an initial default game upon page loading
     window.gameBoard = makeGameBoard(gridSize);
     placeRandom(gameBoard, computerPlayer);
-    addSpecialPiece(gameBoard, "flower");  // Toggle to start default with obstacles
+    if (obstacles) {
+        addSpecialPiece(gameBoard, "cow");
+    }
+    if (wilds) {
+        addSpecialPiece(gameBoard, "flower");
+    }
+    //addSpecialPiece(gameBoard, "flower");  // Toggle to start default with obstacles
 
     // Restart game in 1 player mode
     document.getElementById('button-1player').onclick = function() {
