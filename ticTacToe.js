@@ -10,8 +10,8 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = true; // Set for default game
-var wilds = true; // Set for defaults game
+var obstacles = false; // Set for default game
+var wilds = false; // Set for defaults game
 
 // Starts game over, used by other buttons
 var resetGame = function() {
