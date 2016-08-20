@@ -1,7 +1,7 @@
 // Initialize game environment
 var gameOn = true; // Set to true if game to start upon page loading
 var numPlayers = 1;
-var gridSize = 4;
+var gridSize = 3;
 var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
