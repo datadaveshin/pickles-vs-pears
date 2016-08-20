@@ -11,7 +11,7 @@ var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
 var obstacles = false;
-var wilds = false;
+var wilds = true;
 
 // Starts game over, used by other buttons
 var resetGame = function() {
