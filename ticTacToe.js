@@ -10,8 +10,8 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = false;
-var wilds = true;
+var obstacles = true; // Set for default game
+var wilds = true; // Set for defaults game
 
 // Starts game over, used by other buttons
 var resetGame = function() {
@@ -72,7 +72,7 @@ var resetGame = function() {
     // Restart game in Medium mode
     document.getElementById('button-medium').onclick = function() {
         computerLogic = 'max';
-        numberOfTrials = 8;
+        numberOfTrials = 5;
         resetGame();
     };
 
