@@ -10,8 +10,8 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = false; // Set for default game
-var wilds = false; // Set for defaults game
+var obstaclesOn = false; // Set for default game
+var wildsOn = false; // Set for defaults game
 
 // Starts game over, used for default game and by buttons
 var resetGame = function() {
@@ -19,10 +19,10 @@ var resetGame = function() {
     currentPlayer = humanPlayer;
     window.gameBoard = makeGameBoard(gridSize);
     // Add obstacles
-    if (obstacles) {
+    if (obstaclesOn) {
         addSpecialPiece(gameBoard, "cow");
     }
-    if (wilds) {
+    if (wildsOn) {
         addSpecialPiece(gameBoard, "flower");
     }
     if (numPlayers === 1 && currentPlayer === 'playerX') {
@@ -115,25 +115,25 @@ var resetGame = function() {
 
     // Restart game with no obstacles
     document.getElementById('button-noObstacle').onclick = function() {
-        obstacles = false;
+        obstaclesOn = false;
         resetGame();
     };
 
     // Restart game with obstacles
     document.getElementById('button-obstacle').onclick = function() {
-        obstacles = true;
+        obstaclesOn = true;
         resetGame();
     };
 
     // Restart game with no wild squares
     document.getElementById('button-noWild').onclick = function() {
-        wilds = false;
+        wildsOn = false;
         resetGame();
     };
 
     // Restart game with wild squares
     document.getElementById('button-wild').onclick = function() {
-        wilds = true;
+        wildsOn = true;
         resetGame();
     };
 
