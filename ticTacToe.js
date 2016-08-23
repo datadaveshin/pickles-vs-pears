@@ -10,8 +10,8 @@ var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
-var obstacles = true; // Set for default game
-var wilds = true; // Set for defaults game
+var obstacles = false; // Set for default game
+var wilds = false; // Set for defaults game
 
 // Starts game over, used by other buttons
 var resetGame = function() {
@@ -34,14 +34,15 @@ var resetGame = function() {
 
 (function() {
     // Start an initial default game upon page loading
-    window.gameBoard = makeGameBoard(gridSize);
-    placeRandom(gameBoard, computerPlayer);
-    if (obstacles) {
-        addSpecialPiece(gameBoard, "cow");
-    }
-    if (wilds) {
-        addSpecialPiece(gameBoard, "flower");
-    }
+    resetGame();
+    // window.gameBoard = makeGameBoard(gridSize);
+    // placeRandom(gameBoard, computerPlayer);
+    // if (obstacles) {
+    //     addSpecialPiece(gameBoard, "cow");
+    // }
+    // if (wilds) {
+    //     addSpecialPiece(gameBoard, "flower");
+    // }
     //addSpecialPiece(gameBoard, "flower");  // Toggle to start default with obstacles
 
     // Restart game in 1 player mode
