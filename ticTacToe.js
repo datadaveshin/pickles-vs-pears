@@ -1,7 +1,7 @@
 // Initialize game environment
 var gameOn = true; // Set to true if game to start upon page loading
 var numPlayers = 1;
-var gridSize = 4;
+var gridSize = 4; // Set for default game
 var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
@@ -13,7 +13,7 @@ var scoreOther = 1;
 var obstacles = false; // Set for default game
 var wilds = false; // Set for defaults game
 
-// Starts game over, used by other buttons
+// Starts game over, used for default game and by buttons
 var resetGame = function() {
     gameOn = true;
     currentPlayer = humanPlayer;
@@ -35,15 +35,6 @@ var resetGame = function() {
 (function() {
     // Start an initial default game upon page loading
     resetGame();
-    // window.gameBoard = makeGameBoard(gridSize);
-    // placeRandom(gameBoard, computerPlayer);
-    // if (obstacles) {
-    //     addSpecialPiece(gameBoard, "cow");
-    // }
-    // if (wilds) {
-    //     addSpecialPiece(gameBoard, "flower");
-    // }
-    //addSpecialPiece(gameBoard, "flower");  // Toggle to start default with obstacles
 
     // Restart game in 1 player mode
     document.getElementById('button-1player').onclick = function() {
@@ -146,74 +137,53 @@ var resetGame = function() {
         resetGame();
     };
 
-
-    // Click handler for squares on board
-    // Starts with the 1st human player move
-    // Checks if there is a win
-    // Then allows either the second player or computer player to move
-    // Checks to see if there is a win
+    // Click handler for squares on board. Starts with the 1st human player move. Checks if there is a win. Then allows either the second player or computer player to move, and checks to see if there is a win again. 
     window.clickHandler = function(positionArr) {
         if (gameOn) {
-            // console.log(gameBoard) // test
-
             // Get board position of clicked square
             var row = positionArr[0];
             var col = positionArr[1];
             var filledSquare = false;
             var whileEmpty = true;
 
-            // If game difficulty is hard and grid larger than 3x3
-            // add cows
-
             // If there is not a gamePiece assigned to square, do:
             if (gameBoard[row][col].gamePiece === undefined) {
-                // console.log("In the player 1 loop") // test
 
                 // Make a gamePiece and render the Board
                 makePiece(gameBoard, [row, col], currentPlayer);
                 renderGameBoard(gameBoard);
                 whileEmpty = false;
                 
-                // Check if 1st human player wins or tie
-                // if so, alert and reset game
+                // Check if 1st human player wins or tie, if so, alert and reset game
                 winner = checkWin(gameBoard);
-                // console.log("winner1:", winner)
                 if (winner === currentPlayer || winner ==='tie') {
-                    // console.log("winalert 1") // test
                     winAlert(winner);
                     gameOn = false;
                 }
 
+                // If 1 player then: Check for empty squares and let computer choose at random, and render game board.
                 if (gameOn) {
-                    // If 1 player then:
-                    // Check for empty squares and 
-                    // Let computer choose at random
-                    // Render game board
                     if (numPlayers === 1) {
                         if (getEmptySquares(gameBoard).length > 0 && gameOn) {
                             if (computerLogic === "random") {
                                 placeRandom(gameBoard, computerPlayer);
                             } else {
-                            // autoPlay(gameBoard, computerPlayer); // test - toglle to test autoPlay
+                            // autoPlay(gameBoard, computerPlayer); // Test - toglle to test autoPlay
                             monteCarlo(gameBoard, computerPlayer, numberOfTrials, computerLogic)
                             }
                         };
-                        renderGameBoard(gameBoard); // test - toggle to test autoplay
+                        renderGameBoard(gameBoard); 
                         winner = checkWin(gameBoard);
                         if (winner === computerPlayer || winner ==='tie') {
-                            // console.log("winalert 2") // test
                             winAlert(winner);
                             gameOn = false;
                         }
 
-                    // Else If 2 players then:
-                    // Simply switch the current player for next loop
+                    // Else If 2 players then: Simply switch the current player for next loop.
                     } else if (numPlayers === 2) {
                             currentPlayer = switchPlayer(currentPlayer);
                     }
-                    // console.log("winner2:", winner) // test
-                    // printBoard(gameBoard, 'player') // test
-                    // console.log("gameBoard", gameBoard) // test
+                    // printBoard(gameBoard, 'player') // Test to output board in console
                 }
             }
         }
