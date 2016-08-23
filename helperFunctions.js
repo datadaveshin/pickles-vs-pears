@@ -1,10 +1,8 @@
-// Uncomment 3 lines below to invoke the clickHandler function in ticTacToe.js
 $(document).on('click', '.gameSquare', function() {
   clickHandler($(this).data('position'));
 });
 
-// Holds the images for the gamePieces
-// Toggle in X, O pairs to change images for game
+// Holds the images for the gamePieces: Toggle in X, O pairs to change images for game.
 var imageDict = {
     // playerX: "images/amusing/amusing-1299754_1280.png",
     // playerO: "images/amusing/amusing-1299756_1280.png"
@@ -14,21 +12,22 @@ var imageDict = {
     // playerO: "images/fish/lantern-fish-1433046_1280.png"
     playerX: "images/fruitsAndVeggies/pear-small.png",
     playerO: "images/fruitsAndVeggies/pickle-small.png",
-    cow: "images/obstacles/cowFlower.jpg",
-    flower: "images/obstacles/flower.jpg"
+    obstacle: "images/obstacles/cowFlower.jpg",
+    wild: "images/obstacles/flower.jpg"
 
 };
+
 
 var nameDict  = {
     playerX: "Pears",
     playerO: "Pickles",
-    cow: "Cow",
-    flower: "Flower"
+    obstacle: "Cow",
+    wild: "Flower"
 };
+
 
 // Generates the gameBoard
 var makeGameBoard = function(boardSize) {
-    // console.log("makeGameBoard Getting Accessed") // test
     var board = [];
     var color = getRandomColor();
     for(var i = 0; i < boardSize; i++) {
@@ -37,7 +36,7 @@ var makeGameBoard = function(boardSize) {
             var square = {
             position: [i, j],
             color: color,
-            gamePiece: undefined, // This property contains gamePiece object if one is on that square. 
+            gamePiece: undefined, 
             text: '',
             score: 0
             };
@@ -47,6 +46,7 @@ var makeGameBoard = function(boardSize) {
     }
     return board;
 };
+
 
 // Renders the gameBoard
 var renderGameBoard = function(gameBoard) {
@@ -76,13 +76,11 @@ var renderGameBoard = function(gameBoard) {
 };
 
 
-// Generates a gamePiece object 
-// initialPosition is a 2 element array
+// Generates a gamePiece object: initialPosition is a 2 element array
 var makePiece = function(gameBoard, initialPosition, player) {
     var pieceName = nameDict[player]
     var gamePiece = {
         name: pieceName,
-        // typeOfPiece: pieceType,
         imageURL: imageDict[player],
         playerBelongsTo: player
     };
@@ -92,8 +90,8 @@ var makePiece = function(gameBoard, initialPosition, player) {
     return gamePiece;
 };
 
+
 // Generate random color for squares
-// From http://stackoverflow.com/questions/1484506/random-color-generator-in-javascript
 var getRandomColor = function() {
     var letters = '0123456789ABCDEF'.split('');
     var color = '#';
@@ -102,6 +100,7 @@ var getRandomColor = function() {
     };
     return color;
 };
+
 
 // Resets each squareObj to having a new color and each gamePiece as empty
 var resetBoard = function(board) {
@@ -113,6 +112,7 @@ var resetBoard = function(board) {
         })
     })
 };
+
 
 // Returns size of gameBoard
 var getBoardDim = function(board) {
@@ -134,10 +134,7 @@ var getEmptySquares = function(board) {
 };
 
 
-// Checks status of game:
-// Takes a board
-// Returns string indicating winner is playerO, playerX or tie
-// or noWinner
+// Checks status of game: Takes a board, Returns string indicating winner is playerO, playerX or tie, or noWinner
 var checkWin = function(board) {
     linesArr = [];
 
@@ -185,27 +182,17 @@ var checkWin = function(board) {
     }
 
     // Calculate if playerX or playerO is a winner and assign to outcome
-    // var outcome = fullLineArr.forEach(function(lineArr){return lineArr.gamePiece.playerBelongsTo === 'playerX' || 'flower' })
-    // var outcomeO = fullLineArr.filter(function(lineArr){return lineArr.gamePiece.playerBelongsTo === 'playerO' || 'flower' })
     var outcome;
-
     fullLineArr.forEach(function(line){
-        if (boardDim === line.filter(function(item){return item.gamePiece.playerBelongsTo !== 'cow'}).length){
-            // console.log(line.length, "hi") // Test
-            line = line.filter(function(item){return item.gamePiece.playerBelongsTo !== 'flower'})
-            // console.log("line", line) // Test
+        if (boardDim === line.filter(function(item){return item.gamePiece.playerBelongsTo !== obstacle}).length){
+            line = line.filter(function(item){return item.gamePiece.playerBelongsTo !== wild})
             if (line.length === line.filter(function(item){return line[0].gamePiece.playerBelongsTo === item.gamePiece.playerBelongsTo}).length) {
                 outcome = line[0].gamePiece.playerBelongsTo;
             }
-
-            // console.log("outcome", outcome) // Test
         }
-
     });
 
-    // If there was a winner return playerX or O
-    // If there are no empty squares return a tie
-    // Otherwise return noWinner
+    // If there was a winner return playerX or O. If there are no empty squares return a tie, otherwise return noWinner.
     if (outcome === "playerO") {
         return "playerO"
     } else if (outcome === "playerX") {
@@ -217,23 +204,23 @@ var checkWin = function(board) {
     }
 };
 
+
 // Place a gamePiece on a random *empty* square
-var placeRandom = function(board, player) {
+var placeRandom = function(board, pieceType) {
     var emptyArr = getEmptySquares(board)
     var randomEmptyPos = emptyArr[_.random(emptyArr.length - 1)];
-    // console.log('randomPos', randomEmptyPos) // test
-    // console.log('player', player) // test
-    makePiece(board, randomEmptyPos, player);
+    makePiece(board, randomEmptyPos, pieceType);
 };
 
-// Places boardLength - 3 obstacles randomly on gameBoard
-// obstacleType is cow, flower, etc.
+
+// Places boardLength - 2 obstacles randomly on gameBoard
 var addSpecialPiece = function(board, pieceType) {
     var numPieces = getBoardDim(board) - 2
     for (var i = 0; i < numPieces; i++) {
         placeRandom(gameBoard, pieceType);
     }
 }
+
 
 // Takes currentPlayer as input, returns other player
 var switchPlayer = function(passedPlayer) {
@@ -243,6 +230,7 @@ var switchPlayer = function(passedPlayer) {
         return 'playerX'
     }
 };
+
 
 // Clone Board - takes a board and returns a clone
 var cloneBoard = function(board) {
@@ -263,7 +251,6 @@ var cloneBoard = function(board) {
 
 // Print Board - for Testing players or scores - gives a string representation of the board
 var printBoard = function(board, outputType) {
-    // console.log("PASSED BOARD", board) // test
     if (outputType === "player") {
         console.log("\n####### Players ################") 
     } else {
@@ -291,26 +278,22 @@ var printBoard = function(board, outputType) {
     }
 }
 
-// update Scores - 
+
+// Updates the board within the Monte Carlo function gameBoard
 var updateScores = function(autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner) {
-    // console.log("autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner", autoPlayBoard, scoreBoard, compPlayer, autoPlayWinner) // test
     if (autoPlayWinner === "tie") {
         return scoreBoard;
     } else {
-        // var emptyArr = getEmptySquares(scoreBoard);
         if (autoPlayWinner === compPlayer) {
             var valueFlipper = 1;
         } else {
             var valueFlipper = -1;
         }
-        // console.log("updateScores autoPlayBoard", autoPlayBoard) // test
         _.each(autoPlayBoard, function(gameBoardRow) {
             _.each(gameBoardRow, function(squareObj){
-                // console.log("squareObj.gamepiece", squareObj) // test
                 var boardRow = squareObj.position[0]
                 var boardCol = squareObj.position[1]
                 if (squareObj.gamePiece) {
-                    // console.log("squareObj.gamepiece.playerBelongsTo === compPlayer", squareObj.gamePiece.playerBelongsTo, compPlayer) // test
                     if (squareObj.gamePiece.playerBelongsTo === compPlayer) {
                         scoreBoard[boardRow][boardCol].score += valueFlipper * scoreCurr;
                     } else {
@@ -319,13 +302,13 @@ var updateScores = function(autoPlayBoard, scoreBoard, compPlayer, autoPlayWinne
                 }
             })
         })
-        // printBoard(scoreBoard, 'score') 
-        // console.log("HERE!!!!!!!!!!!!") test
+        // printBoard(scoreBoard, 'score') // Test - prints text version of Scores on grid
         return scoreBoard; 
     }
 }
 
-// Auto player
+
+// Auto player completes a game from a passed board by placing random pieces, and checking for winners
 var autoPlay = function(board, compPlayer) {
     var autoPlayBoard = cloneBoard(board);
     var currPlayer = compPlayer;
@@ -334,11 +317,10 @@ var autoPlay = function(board, compPlayer) {
         placeRandom(autoPlayBoard, currPlayer);
         autoPlayWinner = checkWin(autoPlayBoard);
         currPlayer = switchPlayer(currPlayer);
-        // printBoard(autoPlayBoard, 'player') // test
     }
-    // renderGameBoard(autoPlayBoard) // test
     return {"board": autoPlayBoard, "winner": autoPlayWinner}
 }
+
 
 var shuffleArray = function(array) {
     for (var i = array.length - 1; i > 0; i--) {
@@ -350,26 +332,24 @@ var shuffleArray = function(array) {
     return array;
 }
 
-// Get Best Move
+
+// Get Best Move checks the scoreboard and then returns the best (or worst) move the computer player can make. If the best move can be done on multiple squares, it will pick one at random.
 var getBestMove = function(board, scoreBoard, compPlayer, minOrMax) {
-    var emptyArr = getEmptySquares(board)
-    emptyArr = shuffleArray(emptyArr)
-    var max = -Infinity
-    var min = Infinity
-    var maxPos = false
-    // console.log("EMPTY ARRAY", emptyArr) // test
+    var emptyArr = getEmptySquares(board);
+    emptyArr = shuffleArray(emptyArr);
+    var max = -Infinity;
+    var min = Infinity;
+    var maxPos = false;
     _.each(emptyArr, function(postionArray){
         var emptyRow = postionArray[0];
         var emptyCol = postionArray[1];
-        // console.log("scoreBoard[emptyRow][emptyCol].score", scoreBoard[emptyRow][emptyCol].score) // test
         if (scoreBoard[emptyRow][emptyCol].score > max) {
             max = scoreBoard[emptyRow][emptyCol].score
             maxPos = postionArray
-        }
-        // console.log("maxPos", maxPos) // test   
+        }  
         if (scoreBoard[emptyRow][emptyCol].score < min) {
-            min = scoreBoard[emptyRow][emptyCol].score
-            minPos = postionArray
+            min = scoreBoard[emptyRow][emptyCol].score;
+            minPos = postionArray;
         } 
     })
     if (minOrMax === "min") {
@@ -377,21 +357,17 @@ var getBestMove = function(board, scoreBoard, compPlayer, minOrMax) {
     } else {
         return maxPos
     }
-}
+};
 
-// Monte Carlo Simultor
+// Monte Carlo Simultor - runs X number of random games to be used by computer player to decide on the best move
 var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
     var scoreBoard = cloneBoard(board);
-    // console.log("scoreBoard!!!!", scoreBoard) // test
     for (var i = 0; i < numTrials; i++) {
         var autoResults = autoPlay(board, compPlayer);
-        // console.log("scoreBoard BEFORE", scoreBoard) // test
         scoreBoard = updateScores(autoResults.board, scoreBoard, compPlayer, autoResults.winner);
-        // console.log("scoreBoard AFTER", scoreBoard) // test
-        printBoard(scoreBoard, 'score') // test
+        // printBoard(scoreBoard, 'score') // Test that reveals how the boards are scored 
     }
-    var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer, minOrMax)
-    // console.log("bestMovePosition", bestMovePosition) // test
+    var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer, minOrMax);
     makePiece(board, bestMovePosition, compPlayer);
 }
 
@@ -405,4 +381,3 @@ var winAlert = function(gameState) {
 };
 
 // Put tests here!
-

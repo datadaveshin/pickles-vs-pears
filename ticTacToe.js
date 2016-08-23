@@ -6,6 +6,8 @@ var humanPlayer = 'playerX';
 var computerPlayer = 'playerO';
 var currentPlayer = 'playerX';
 var winner = 'noWinner';
+var obstacle = 'Cow'
+var wild = 'Flower'
 var computerLogic = 'max'
 var numberOfTrials = 1000;
 var scoreCurr = 1;
@@ -20,10 +22,10 @@ var resetGame = function() {
     window.gameBoard = makeGameBoard(gridSize);
     // Add obstacles
     if (obstaclesOn) {
-        addSpecialPiece(gameBoard, "cow");
+        addSpecialPiece(gameBoard, 'obstacle');
     }
     if (wildsOn) {
-        addSpecialPiece(gameBoard, "flower");
+        addSpecialPiece(gameBoard, 'wild');
     }
     if (numPlayers === 1 && currentPlayer === 'playerX') {
         placeRandom(gameBoard, computerPlayer);
