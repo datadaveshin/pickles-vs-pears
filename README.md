@@ -5,7 +5,7 @@ For my nieces, I decided to make a modified Tic Tac Toe game. This is my first J
 Telegraph Prep provided starter .css and .html files, along with methods to create an 8 x 8 game board, render the board, and a click handler that would return the position of the board that the mouse clicked. From there, I modified all of the methods to generate 3 x 3 to 6 x 6 grid boards, and the logic to change the click handler from returning a square position to having the ability to make a basic Tic Tac Toe game.
 
 ## Version 5
-Ability to add cows as obstacles to make the game more interesting.
+Ability to add cows as obstacles, and 'wild' flowers to make the game more interesting.
 
 ## Version 4
 Made "can't lose" skill level where computer makes the worst move.
