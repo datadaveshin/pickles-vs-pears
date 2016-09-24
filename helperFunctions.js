@@ -184,10 +184,12 @@ var checkWin = function(board) {
     // Calculate if playerX or playerO is a winner and assign to outcome
     var outcome;
     fullLineArr.forEach(function(line){
-        if (boardDim === line.filter(function(item){return item.gamePiece.playerBelongsTo !== obstacle}).length){
-            line = line.filter(function(item){return item.gamePiece.playerBelongsTo !== wild})
-            if (line.length === line.filter(function(item){return line[0].gamePiece.playerBelongsTo === item.gamePiece.playerBelongsTo}).length) {
-                outcome = line[0].gamePiece.playerBelongsTo;
+        if (boardDim === line.filter(function(item) {return item.gamePiece.playerBelongsTo !== 'obstacle'}).length) {
+            if (boardDim === line.filter(function(item) {return (item.gamePiece.playerBelongsTo === 'playerX' || item.gamePiece.playerBelongsTo === 'wild')}).length) {
+                outcome = 'playerX';
+            }
+            if (boardDim === line.filter(function(item) {return (item.gamePiece.playerBelongsTo === 'playerO' || item.gamePiece.playerBelongsTo === 'wild')}).length) {
+                outcome = 'playerO';
             }
         }
     });

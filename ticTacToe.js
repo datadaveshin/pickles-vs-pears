@@ -13,7 +13,7 @@ var numberOfTrials = 1000;
 var scoreCurr = 1;
 var scoreOther = 1;
 var obstaclesOn = false; // Set for default game
-var wildsOn = false; // Set for defaults game
+var wildsOn = true; // Set for defaults game
 
 // Starts game over, used for default game and by buttons
 var resetGame = function() {
