@@ -36,7 +36,7 @@ var makeGameBoard = function(boardSize) {
             var square = {
             position: [i, j],
             color: color,
-            gamePiece: undefined, 
+            gamePiece: undefined,
             text: '',
             score: 0
             };
@@ -60,7 +60,7 @@ var renderGameBoard = function(gameBoard) {
     var squareSize = ((browserSize - 250) / boardSize) - 2;
     gameBoard.forEach(function(rowArr, rowIndex) {
         rowArr.forEach(function(squareObj, columnIndex) {
-            // Create the HTML that will be rendered to the DOM for each square 
+            // Create the HTML that will be rendered to the DOM for each square
             if (squareObj.gamePiece && squareObj.gamePiece.imageURL) {
                 var squareHtml = '<img src="' + squareObj.gamePiece.imageURL + '" class="gameSquare" style="height:' + squareSize + 'px; width:' + squareSize + 'px" data-position="[' + rowIndex + ',' + columnIndex + ']">'
             } else {
@@ -116,7 +116,7 @@ var resetBoard = function(board) {
 
 // Returns size of gameBoard
 var getBoardDim = function(board) {
-    return board.length 
+    return board.length
 };
 
 
@@ -130,7 +130,7 @@ var getEmptySquares = function(board) {
             }
         })
     });
-    return emptyArr; 
+    return emptyArr;
 };
 
 
@@ -139,7 +139,7 @@ var checkWin = function(board) {
     linesArr = [];
 
     // Add rows gamePiece array to lines array
-    _.each(board, function(boardRow){ 
+    _.each(board, function(boardRow){
         var pieceArray = _.filter(boardRow, function(squareObj) {
            return squareObj.gamePiece;
         })
@@ -176,8 +176,8 @@ var checkWin = function(board) {
         return arr.length == boardDim;
     });
 
-    // First quickly return 'noWinner' if array is empty 
-    if (fullLineArr.length == 0) { 
+    // First quickly return 'noWinner' if array is empty
+    if (fullLineArr.length == 0) {
         return "noWinner";
     }
 
@@ -254,9 +254,9 @@ var cloneBoard = function(board) {
 // Print Board - for Testing players or scores - gives a string representation of the board
 var printBoard = function(board, outputType) {
     if (outputType === "player") {
-        console.log("\n####### Players ################") 
+        console.log("\n####### Players ################")
     } else {
-        console.log("\n###### Score #####") 
+        console.log("\n###### Score #####")
     }
     var playerArr = _.each(board, function(boardRow, index) {
         var row = "row " + index + ": "
@@ -305,7 +305,7 @@ var updateScores = function(autoPlayBoard, scoreBoard, compPlayer, autoPlayWinne
             })
         })
         // printBoard(scoreBoard, 'score') // Test - prints text version of Scores on grid
-        return scoreBoard; 
+        return scoreBoard;
     }
 }
 
@@ -348,11 +348,11 @@ var getBestMove = function(board, scoreBoard, compPlayer, minOrMax) {
         if (scoreBoard[emptyRow][emptyCol].score > max) {
             max = scoreBoard[emptyRow][emptyCol].score
             maxPos = postionArray
-        }  
+        }
         if (scoreBoard[emptyRow][emptyCol].score < min) {
             min = scoreBoard[emptyRow][emptyCol].score;
             minPos = postionArray;
-        } 
+        }
     })
     if (minOrMax === "min") {
         return minPos
@@ -367,7 +367,7 @@ var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
     for (var i = 0; i < numTrials; i++) {
         var autoResults = autoPlay(board, compPlayer);
         scoreBoard = updateScores(autoResults.board, scoreBoard, compPlayer, autoResults.winner);
-        // printBoard(scoreBoard, 'score') // Test that reveals how the boards are scored 
+        // printBoard(scoreBoard, 'score') // Test that reveals how the boards are scored
     }
     var bestMovePosition = getBestMove(gameBoard, scoreBoard, compPlayer, minOrMax);
     makePiece(board, bestMovePosition, compPlayer);
@@ -377,7 +377,7 @@ var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
 var winAlert = function(gameState) {
     if (gameState === 'tie') {
         alert("It's a tie!!!");
-    } else { 
+    } else {
         alert(nameDict[gameState] + " win!!!");
     }
 };

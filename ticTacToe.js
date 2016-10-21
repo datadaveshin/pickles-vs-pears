@@ -43,7 +43,7 @@ var resetGame = function() {
         numPlayers = 1;
         resetGame();
     };
-    
+
     // Restart game in 2 player mode
     document.getElementById('button-2player').onclick = function() {
         numPlayers = 2;
@@ -82,14 +82,14 @@ var resetGame = function() {
         gridSize = 3;
         resetGame();
     };
-    
+
     // Restart game with 4 X 4 grid, player mode is retained
     document.getElementById('button-grid4').onclick = function() {
         gridSize = 4;
         resetGame();
         renderGameBoard(gameBoard)
     };
-     
+
     // Restart game with 5 X 5 grid, player mode is retained
     document.getElementById('button-grid5').onclick = function() {
         gridSize = 5;
@@ -139,7 +139,7 @@ var resetGame = function() {
         resetGame();
     };
 
-    // Click handler for squares on board. Starts with the 1st human player move. Checks if there is a win. Then allows either the second player or computer player to move, and checks to see if there is a win again. 
+    // Click handler for squares on board. Starts with the 1st human player move. Checks if there is a win. Then allows either the second player or computer player to move, and checks to see if there is a win again.
     window.clickHandler = function(positionArr) {
         if (gameOn) {
             // Get board position of clicked square
@@ -155,7 +155,7 @@ var resetGame = function() {
                 makePiece(gameBoard, [row, col], currentPlayer);
                 renderGameBoard(gameBoard);
                 whileEmpty = false;
-                
+
                 // Check if 1st human player wins or tie, if so, alert and reset game
                 winner = checkWin(gameBoard);
                 if (winner === currentPlayer || winner ==='tie') {
@@ -174,7 +174,7 @@ var resetGame = function() {
                             monteCarlo(gameBoard, computerPlayer, numberOfTrials, computerLogic)
                             }
                         };
-                        renderGameBoard(gameBoard); 
+                        renderGameBoard(gameBoard);
                         winner = checkWin(gameBoard);
                         if (winner === computerPlayer || winner ==='tie') {
                             winAlert(winner);
