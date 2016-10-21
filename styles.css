@@ -50,7 +50,7 @@ container {
     border-style: solid;
     border-width: 1px;
     border-color: white;
-    border-radius: 50%;
+    border-radius: 25%;
 }
 
 .gameBoard, .logo {
