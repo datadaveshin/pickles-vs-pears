@@ -1,3 +1,5 @@
+// Copyright David Shin 2016
+
 // Initialize game environment
 var gameOn = true; // Set to true if game to start upon page loading
 var numPlayers = 1;

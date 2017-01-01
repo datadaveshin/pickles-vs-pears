@@ -14,3 +14,6 @@ Make version that has the option of 1 or 2 two players.
 A basic playable Tic Tac Toe game with options to expand the board to a 4 x 4 or 5 x 5 grid.
 In this version, you play against the computer.
 To make it fun for the kids, I let the computer choose it's square by random, which, I find for a 3 x 3 board, actually provides enough challenge for children - they can win!
+
+
+Copyright David Shin 2016

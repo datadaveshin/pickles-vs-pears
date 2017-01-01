@@ -1,3 +1,5 @@
+// Copyright David Shin 2016
+
 $(document).on('click', '.gameSquare', function() {
   clickHandler($(this).data('position'));
 });
