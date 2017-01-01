@@ -2,6 +2,9 @@ $(document).on('click', '.gameSquare', function() {
   clickHandler($(this).data('position'));
 });
 
+// Initialize the scoreboard for the game
+var scoreboard
+
 // Holds the images for the gamePieces: Toggle in X, O pairs to change images for game.
 var imageDict = {
     // playerX: "images/amusing/amusing-1299754_1280.png",
@@ -255,14 +258,14 @@ var cloneBoard = function(board) {
 var printBoard = function(board, outputType) {
     if (outputType === "player") {
         console.log("\n####### Players ################")
-    } else {
+    } else if (outputType === "score") {
         console.log("\n###### Score #####")
     }
     var playerArr = _.each(board, function(boardRow, index) {
         var row = "row " + index + ": "
         var output
         _.each (boardRow, function(squareObj){
-            if (squareObj.gamePiece === "" && outputType ==="player") {
+            if (squareObj.gamePiece === undefined && outputType ==="player") {
                 output = "_______"
             } else if (outputType === "player") {
                 output = squareObj.gamePiece.playerBelongsTo;
@@ -363,7 +366,7 @@ var getBestMove = function(board, scoreBoard, compPlayer, minOrMax) {
 
 // Monte Carlo Simultor - runs X number of random games to be used by computer player to decide on the best move
 var monteCarlo = function(board, compPlayer, numTrials, minOrMax) {
-    var scoreBoard = cloneBoard(board);
+    scoreBoard = cloneBoard(board);
     for (var i = 0; i < numTrials; i++) {
         var autoResults = autoPlay(board, compPlayer);
         scoreBoard = updateScores(autoResults.board, scoreBoard, compPlayer, autoResults.winner);
