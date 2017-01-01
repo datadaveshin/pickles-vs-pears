@@ -10,15 +10,14 @@ Why use a Monte Carlo simulation? First, it's much quicker than a minimax, becau
 Thanks to Josh C and Brian J from [Code Self Study](http://www.codeselfstudy.com) for pointers. Thanks to Sara H and Diana P for beta-testing.
 
 ### Logo
-Thanks to Sara H!
+Thanks to Sara Harmon!
 
 ### Images
 Images were obtained from [Pixabay](http://www.pixabay.com)
 
-### Telegraph Prep
-Thanks to Telegraph Prep operated under Telegraph Academy / Reactor Core in the San Francisco Bay Area - They provided the first 3 JS functions (make an 8 x 8 board, render it and a click handler that returns a position), as well as some starter HTML/CSS for this Capstone Project!
+### Telegraph Prep / Hack Reactor
+Thanks to Telegraph Prep operated under [Telegraph Academy](http://getcoding.hackreactor.com/telegraph-academy/) / [Reactor Core](http://www.hackreactor.com/) in the San Francisco Bay Area - They provided the first 3 JS functions (make an 8 x 8 board, render it and a click handler that returns a position), as well as some starter HTML/CSS for this Capstone Project!
 
 ### Coursera / Rice University
-I learned about Monte Carlo simulations and recursive minimax functions from their Python course.
+I learned about Monte Carlo simulations and recursive minimax functions from their [Fundamentals of Computing Specialization course](https://www.coursera.org/specializations/computer-fundamentals).
 
-Copyright David Shin 2016
