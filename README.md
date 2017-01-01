@@ -19,5 +19,4 @@ Images were obtained from [Pixabay](http://www.pixabay.com)
 Thanks to Telegraph Prep operated under [Hack Reactor](http://www.hackreactor.com/) through [Telegraph Academy](http://getcoding.hackreactor.com/telegraph-academy/) in the San Francisco Bay Area - They provided the first 3 JS functions (make an 8 x 8 board, render it and a click handler that returns a position), as well as some starter HTML/CSS for this Capstone Project!
 
 ### Coursera / Rice University
-I learned about Monte Carlo simulations and recursive minimax functions from their [Fundamentals of Computing Specialization course](https://www.coursera.org/specializations/computer-fundamentals).
-
+I learned about Monte Carlo simulations and recursive minimax functions from their [Fundamentals of Computing Specialization courses](https://www.coursera.org/specializations/computer-fundamentals).
