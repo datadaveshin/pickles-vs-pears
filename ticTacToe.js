@@ -186,12 +186,12 @@ var resetGame = function() {
                             currentPlayer = switchPlayer(currentPlayer);
                     }
 
-                    /** 
+                    /**
                     Game state tests
                     */
-                    // printBoard(gameBoard, 'player') // Test to output board in console
-                    // printBoard(scoreBoard, 'score') // Test to output board in console
-                    // console.log(gameBoard) // Test to output gameBoard as array of arrays
+                    printBoard(gameBoard, 'player') // Test to output board in console
+                    printBoard(scoreBoard, 'score') // Test to output board in console
+                    console.log(gameBoard) // Test to output gameBoard as array of arrays
                 }
             }
         }

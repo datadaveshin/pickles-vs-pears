@@ -266,9 +266,15 @@ var printBoard = function(board, outputType) {
         var output
         _.each (boardRow, function(squareObj){
             if (squareObj.gamePiece === undefined && outputType ==="player") {
-                output = "_______"
+                output = "________"
             } else if (outputType === "player") {
-                output = squareObj.gamePiece.playerBelongsTo;
+                if (squareObj.gamePiece.playerBelongsTo === "wild") {
+                    output = "  wild  ";
+                } else if (squareObj.gamePiece.playerBelongsTo === "playerO" || squareObj.gamePiece.playerBelongsTo === "playerX") {
+                    output = squareObj.gamePiece.playerBelongsTo + " "
+                } else if (squareObj.gamePiece.playerBelongsTo === "obstacle") {
+                    output = "obstacle"
+                }
             } else if (outputType === "score") {
                 output = squareObj.score;
             }
