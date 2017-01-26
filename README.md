@@ -1,5 +1,5 @@
 ![Pickles vs. Pears!](images/picklesPearsLogo/picklespearsfinal2.png?raw=true "Pickles vs. Pears!")
-## [Click Here To Play](https://github.com/datadaveshin/pickles-vs-pears)
+## [Click Here To Play](https://datadaveshin.github.io/pickles-vs-pears/)
 For my nieces, I decided to make a modified Tic Tac Toe game. It has a dynamic board that allows your to play a traditional 3 x 3 board, on up to 6 x 6, using Pickles and Pears instead of X's and O's. It also has optional wild (flower) squares as well as obstacles (cows). One or two players can play, and there are various skill levels including one that will pretty much let you win!
 
 This is my first JavaScript/Web project, and it is derived from my Telegraph Prep Capstone project. For the artificial intelligence, I went with a Monte Carlo simulation that I learned about through Rice University's Python course, rather than the traditional minimax function used for these types of games.
